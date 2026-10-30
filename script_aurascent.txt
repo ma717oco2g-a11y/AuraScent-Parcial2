@@ -1,0 +1,37 @@
+-- =====================================================================
+-- PROYECTO INTEGRADOR: AuraScent (Perfumería Inteligente)
+-- SCRIPT DE BASE DE DATOS - POSTGRESQL
+-- =====================================================================
+
+-- 1. Tabla de Familias Olfativas
+CREATE TABLE familias_olfativas (
+    id SERIAL PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL
+);
+
+-- Insertar datos en familias
+INSERT INTO familias_olfativas (nombre) VALUES 
+('Amaderada / Oriental'),
+('Cítrica / Marina'),
+('Gourmand / Dulce');
+
+-- 2. Tabla Principal de Perfumes
+CREATE TABLE perfumes (
+    id SERIAL PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    marca VARCHAR(100) NOT NULL,
+    concentracion VARCHAR(50),
+    nota_salida VARCHAR(100),
+    nota_corazon VARCHAR(100),
+    nota_fondo VARCHAR(100),
+    ocasion VARCHAR(50), 
+    vibra VARCHAR(50),   
+    familia_id INT,
+    FOREIGN KEY (familia_id) REFERENCES familias_olfativas(id)
+);
+
+-- Insertar los perfumes del proyecto
+INSERT INTO perfumes (nombre, marca, concentracion, nota_salida, nota_corazon, nota_fondo, ocasion, vibra, familia_id) VALUES
+('Nuit Enigmatique', 'Maison Noir', 'Eau de Parfum', 'Bergamota, Pimienta Negra', 'Iris, Líbano', 'Ámbar, Vainilla Bourbon', 'noche', 'misterio', 1),
+('Aqua Vitae', 'Citrus & Co', 'Eau de Toilette', 'Limón de Sicilia, Menta', 'Notas Marinas, Lavanda', 'Madera de Cedro, Almizcle', 'dia', 'frescura', 2),
+('Velvet Vanilla', 'Parfum Elixir', 'Royale', 'Almendra Dulce, Canela', 'Jazmín Sambac, Orquídea', 'Vainilla, Habba Tonka', 'verano', 'dulzura', 3);

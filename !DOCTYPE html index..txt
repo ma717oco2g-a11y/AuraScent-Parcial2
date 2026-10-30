@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AuraScent - Descubre perfumes exclusivos según tu estado de ánimo y ocasión.">
+    <meta name="keywords" content="perfumes, fragancias, pirámide olfativa, notas aromáticas, recomendador">
+    <meta property="og:title" content="AuraScent - Perfumería Inteligente">
+    <meta property="og:description" content="Encuentra la fragancia perfecta según tu vibra y tu momento ocasional.">
+    <title>AuraScent - Perfumería Inteligente</title>
+
+    <style>
+       /* Estilos Generales */
+       * { box-sizing: border-box; }
+       body {
+           font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+           background-color: #fdfbf5;
+           color: #2b2b3b;
+           margin: 0;
+           padding: 0;
+       }
+
+       /* Encabezado */
+       header {
+          background-color: #111111;
+          color: #f3c940;
+          padding: 15px 30px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+       }
+       header h2 { margin: 0; font-size: 1.8em; }
+       nav a {
+          color: #ffffff;
+          text-decoration: none;
+          margin-left: 20px;
+          font-size: 0.9em;
+          transition: 0.3s;
+       }
+       nav a:hover { color: #f1c63b; }
+
+       /* Banner Principal (Hero) */
+       .hero {
+        text-align: center;
+        padding: 60px 20px;
+        background: linera-gradient(180deg, #111111 0%, #2a2a2b 100%);
+        color: white; 
+       }
+       .hero h1 { font-size: 2.5em; color: #2b2b2b; margin-bottom: 10px; }
+       .hero p { font-size: 1.2em; color: #ccc; max-width: 600px; margin: 0 auto 30px; }
+
+      /* Sección del Formulario / Test */
+     .quiz-section {
+        background: white;
+        max-width: 700px;
+        margin: -30px auto 40px; 
+        padding: 30px;
+        border-radius: 12px; 
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      }
+      .quiz-section h3 { text-align: center; color: #111; margin-top: 0; }
+      .form-group { margin-bottom: 20px; text-align: left; }
+      .form-group label { display: block; font-weight: bold; margin-bottom: 8px; }
+      .form-group select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 1em;
+      } 
+      .btn-submit {
+         width: 100%;
+         background-color: #dbb433;
+         color: white;
+         border: none;
+         padding: 12px;
+         font-size: 1.1em;
+         font-weight: bold;
+         border-radius: 6px;
+         cursor: pointer;
+         transition: 0.3s;  
+      }
+      .btn-submit:hover { background-color: #b8772b; }
+
+      /* Catálogo de Perfumes */
+      .catalog {
+         max-width: 1100px;
+         margin: 0 auto;
+         padding: 20px;
+      }
+      .catalog h2 { text-align: center; margin-bottom: 30px; }
+      .grid  {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: 25px;
+      } 
+      /* Tarjeta de Perfume */
+      .card {
+          background: white;
+          border-radius: 10px;
+          border: 1px solid #eee;
+          overflow: hidden;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+          transition: transform 0.3s;
+      }
+      .card:hover { transform: translateY(-5px); }
+      .card-img {
+        height: 200px;
+        background: #f4f4f4;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 4em;
+      }
+      .card-body { padding: 20px; }
+      .card-title { font-size: 1.3em; margin: 0 0 5px; color: #111; }
+      .card-brand { color: #888; font-size: 0.9em; margin-bottom: 15px; }
+
+      /* Pirámide Olfativa */
+      .notes-list {
+        background-color: #fafafa;
+        padding: 10px;
+        border-radius: 6px;
+        font-size: 0.85em;
+        margin-top: 10px;
+      }
+      .notes-list div { margin-bottom: 4px; }
+      .tag { display: inline-block; background: #eee; padding: 3px 8px; border-radius: 4px; font-size: 0.8em; margin-top: 10px; }
+
+      /* Pie de página */
+      footer { 
+        background-color: #111;
+        color: #888;
+        text-align: center;
+        padding: 20px;
+        margin-top: 50px;
+        font-size: 0.9em;
+      }
+      </style>
+</head>
+<body>
+
+    <!-- Encabezado / Navegación -->
+    <header>
+        <h2>AuraScent   </h2>
+         <nav>
+             <a href="#test">Recomendador</a>
+             <a href="#catalago">Catálogo</a>
+             <a href="#contacto">Contacto</a>
+         </nav>
+    </header>
+
+    <!-- Banner Principal -->
+     <section class="hero">
+        <h1> Encuentra el perfume que define tu personalidad,manera de ser y esencia </h1>
+        <p>Descubre fragancias únicas basadas en tu estado de ánimo, la ocasión y las notas aromáticas perfectas para ti.</p>
+     </section>
+
+     <!-- Test Olfativo -->
+      <section id="test" class="quiz-section">
+        <h3> ✨ Recomendador Olfativo Inteligente</h3>
+        <form id="perfume-form">
+            <div class="form-group">
+                <label for="ocasion">1. ¿Para qué ocasión es el perdume que buscas?</label>
+                <select id="ocasion" name="ocasion">
+                    <option value="noche">Noche / Cita romántica / Fiesta / Caminar</option>
+                    <option value="dia">Día a día / Colegio / Trabajo / Oficina</option>
+                    <option value="verano">Día caluroso / Playa / Gym / Deporte</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="vibra">2. ¿Qué sensación quieres transmitir?</label>
+                <select id="vibra" name="vibra">
+                    <option value="misterio"> Elegancia, Misterio, Seguro & Seducción</option>
+                    <option value="frescura">Frescura, Energia, Mentolado & Limpieza</option>
+                    <option value="dulzura">Dulzura, Calidez, Cremosos & Comonidad</option>
+                </select>
+            </div>
+            
+            <button type="submit" class="btn-submit">Buscar mi Perfume Ideal 🧪</button>
+         </form>
+     </section>
+
+     <!-- Catálogo de Perfumes -->
+    <section id="catalogo" class="catalog">
+        <b2>Nuestra Selección de Alta Perfumeria</b2>
+     
+        <div class="grid">
+          <!-- Tarjeta 1 -->
+            <div class="card">
+             <div class="card-img">🧴</div>
+             <div class="card-body">
+                <h3 class="card-title">Nuit Enigmatique</h3>
+            <div class="card-brand"> Eau de Parfum • Maison Noir</div>
+
+            <div class="notes-list">
+                <div><strong>🍋 Salida:</strong> Bergamota, Pimienta Negra</div>
+                <div><strong>🌸 Corazón:</strong> Iris, Líbano</div>
+                <div><strong>🪵 Fondo:</strong>  Ámbar, Vainilla Bourbon</div>
+            </div>
+           <span class="tag">Noche  / Elegante</span>
+         </div>
+     </div>
+
+     <!-- Tarjeta 2 -->
+        <div class="card">
+             <div class="card-img">🧪</div>
+             <div class="card-body">
+                <h3 class="card-title">Aqua Vitae</h3>
+            <div class="card-brand">Eau de Toilette • Citrus & Co</div>
+
+            <div class="notes-list">
+                <div><strong>🍋 Salida:</strong> Limón de sicilia, Menta</div>
+                <div><strong>🌸 Corazón:</strong> Notas Marinas, Lavanda</div>
+                <div><strong>🪵 Fondo:</strong>  Madera de Cedro, Almizcles</div>
+            </div>
+           <span class="tag">Día  / Fresco</span>
+         </div>
+     </div>
+
+      <!-- Tarjeta 3 -->
+        <div class="card">
+             <div class="card-img">✨</div>
+             <div class="card-body">
+                <h3 class="card-title">Velvet Vanilla</h3>
+            <div class="card-brand">Parfum Elixir • Royale </div>
+
+            <div class="notes-list">
+                <div><strong>🍋 Salida:</strong> Almendra Dulce, Canela</div>
+                <div><strong>🌸 Corazón:</strong> Jazmín Sambac, Orquídea</div>
+                <div><strong>🪵 Fondo:</strong>  Vainilla, Habba Tonka</div>
+            </div>
+           <span class="tag">Dulce  / Cálido</span>
+         </div>
+     </div>
+  </div>
+</section>
+
+    <!-- Pie de Página -->
+     <footer>
+        <p> © 2026 AuraScent - Proyecto Integrador de Auxiliar de Sistemas | Desarrollado con HTML, CSS y JS</p>
+     </footer>
+
+</body>
+</html>
